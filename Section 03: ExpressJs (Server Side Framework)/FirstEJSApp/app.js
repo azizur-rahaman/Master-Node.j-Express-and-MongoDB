@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 
+// Ordering the Routes is important
 app.get('/', (req, res) => {
     res.render('index.ejs');
 });
@@ -13,6 +14,10 @@ app.get('/user/:id/:username', (req, res) =>{
     let username = req.params.username;
 
     res.render('index.ejs', {id: id, username: username});
+});
+
+app.get('*', (req, res) => {
+    res.send('404 Page Not Found');
 });
 
 app.listen(3000, () => {
