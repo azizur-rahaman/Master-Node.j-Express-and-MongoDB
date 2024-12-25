@@ -2,9 +2,13 @@ const express = require('express');
 
 const app = express();
 
+app.set('views', __dirname, 'views');
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+
 // Ordering the Routes is important
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    res.render('index');
 });
 
 // Passing values to the view
@@ -13,7 +17,7 @@ app.get('/user/:id/:username', (req, res) =>{
     let id = req.params.id;
     let username = req.params.username;
 
-    res.render('index.ejs', {id: id, username: username});
+    res.render('index', {id: id, username: username});
 });
 
 app.get('*', (req, res) => {
