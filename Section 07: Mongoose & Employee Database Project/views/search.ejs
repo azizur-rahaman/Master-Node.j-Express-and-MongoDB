@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Employee</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .container {
+        margin-top: 5rem;
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/navbar') %>
+
+    <div class="container">
+      <h2 class="mb-4">Search Employee</h2>
+      <form action="/employee" method="POST">
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="Employee Name"
+        />
+        <button type="submit" class="btn btn-danger btn-block mt-3">
+          Search in Database
+        </button>
+      </form>
+      <div>
+        <% if (employees) { %>
+          <h4 class="text-danger my-4">Search Results:</h4>
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% employees.forEach((employee) => { %>
+                <tr>
+                  <td><%= employee.name %></td>
+                  <td><%= employee.designation %></td>
+                  <td><%= employee.salary %></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+
+    </div>
+
+    <%- include('./partials/footer') %>
+  </body>
+</html>

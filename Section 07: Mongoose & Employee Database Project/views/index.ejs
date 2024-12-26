@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/header') -%>
+
+  <body>
+    <%- include('./partials/navbar') -%>
+    <br>
+    <div class="container">
+      <div id="table1">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Salary</th>
+              <th>Operations</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Salary</th>
+              <th>Operations</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% employees.forEach(function(employee) { %>
+            <tr>
+              <td><%= employee.name %></td>
+              <td><%= employee.designation %></td>
+              <td><%= employee.salary %></td>
+              <td>
+                <a
+                  href="/edit/<%= employee._id %>"
+                  class="btn btn-primary btn-sm"
+                  >Edit</a
+                >
+                <a
+                  href="/delete/<%= employee._id %>"
+                  class="btn btn-danger btn-sm"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+    <%- include('./partials/footer') -%>
+  </body>
+</html>
